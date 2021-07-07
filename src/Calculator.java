@@ -23,32 +23,21 @@ public class Calculator {
 
     public String printResult() {
         result = calc();
-        if((result < 0) && (parserValue.isRoman())) {                 // Если число отрицательное и римское
+        if ((result < 0) && (parserValue.isRoman())) {                 // Если число отрицательное и римское
             return "-" + RomanNum.getRomanNumber(Math.abs(result));   // добавляем знак '-'
         } else
-        return  parserValue.isRoman() ? RomanNum.getRomanNumber(result) : result + "";
+            return parserValue.isRoman() ? RomanNum.getRomanNumber(result) : result + "";
     }
 
 
     public int calc() {
-        int result = 0;
-
-        switch (operand) {
-            case ("+"):
-                result = num1 + num2;
-                break;
-            case ("-"):
-                result = num1 - num2;
-                break;
-            case ("*"):
-                result = num1 * num2;
-                break;
-            case ("/"):
-//                if (num2 == 0) {
-//                    throw new ArithmeticException("Error division by zero!!!");
-//                }
-                result = num1 / num2;
-        }
+        int result = switch (operand) {
+            case ("+") -> num1 + num2;
+            case ("-") -> num1 - num2;
+            case ("*") -> num1 * num2;
+            case ("/") -> num1 / num2;
+            default -> 0;
+        };
         return result;
     }
 
